@@ -5,66 +5,66 @@
 ![Seaborn](https://img.shields.io/badge/Seaborn-Data_Visualization-3776AB?style=flat)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-11557c?style=flat)
 
-Un proyecto de análisis exploratorio de datos (EDA) e inferencia estadística enfocado en identificar los factores determinantes que impactan de manera directa la recaudación en taquilla (`gross revenue`) dentro de la industria cinematográfica.
+An exploratory data analysis (EDA) and statistical inference project focused on identifying key factors directly influencing gross revenue within the film industry.
 
 ---
 
-## 📌 Contexto y Objetivo del Proyecto
+## 📌 Context & Business Objective
 
-En el mercado del entretenimiento, predecir el retorno financiero de una producción cinematográfica es clave para la toma de decisiones estratégicas y asignación de presupuestos. 
+In the entertainment industry, forecasting the financial return of movie productions is critical for strategic decision-making and budget allocation.
 
-El objetivo principal de este proyecto es transformar un conjunto de datos histórico de películas (más de 6,800 registros) en **insights accionables**, validando hipótesis de negocio a través de:
-* Limpieza y depuración estricta de datos (ETL).
-* Análisis Exploratorio de Datos (EDA).
-* Modelado de correlación estadística (Pearson, Kendall, Spearman) y regresión lineal visual.
-
----
-
-## 🛠️ Tecnologías y Librerías Utilizadas
-
-* **Lenguaje:** Python 3.x
-* **Manipulación y Limpieza de Datos:** `Pandas`, `NumPy`
-* **Visualización de Datos:** `Seaborn`, `Matplotlib`
-* **Entorno:** Jupyter Notebook / Anaconda
+The main objective of this project is to transform a historical movie dataset (+6,800 records) into **actionable business insights** by validating hypotheses through:
+* Rigorous Data Cleaning & Preprocessing (ETL).
+* Exploratory Data Analysis (EDA).
+* Statistical correlation modeling (Pearson, Kendall, Spearman) and visual linear regression.
 
 ---
 
-## 🧹 Pipeline de Procesamiento y Calidad del Dato (ETL)
+## 🛠️ Technologies & Libraries
 
-Para garantizar la **integridad analítica** y evitar sesgos en el modelado estadístico, se implementaron las siguientes fases de tratamiento de datos:
-
-1. **Auditoría de Datos Faltantes:** Identificación y evaluación de valores nulos a lo largo de las 15 variables del dataset.
-2. **Corrección e Inconsistencia de Tipos:**
-   * Conversión de variables numéricas flotantes (`float64`) a enteros (`int64`) en columnas críticas como `budget` y `gross` para optimizar el almacenamiento y alinearlo al formato contable.
-3. **Estandarización de Fechas:**
-   * Creación de la variable calculada `yearcorrect` extrayendo el año directamente de la fecha real de estreno (`released`), resolviendo discrepancias con la columna `year` original.
-4. **Tratamiento de Datos Categóricos:** Codificación numérica (*numerization*) de variables cualitativas (compañía productora, director, género, escritor) para integrarlas en la matriz de correlación multivariable.
+* **Language:** Python 3.x
+* **Data Manipulation & Preprocessing:** `Pandas`, `NumPy`
+* **Data Visualization:** `Seaborn`, `Matplotlib`
+* **Environment:** Jupyter Notebook / VS Code
 
 ---
 
-## 📊 Análisis Exploratorio de Datos (EDA) e Insights Clave
+## 🧹 Data Pipeline & Quality Assurance (ETL)
 
-### 1. Evaluación de Correlación Numérica
-Se calcularon matrices de correlación utilizando el coeficiente de Pearson para cuantificar la relación entre variables cuantitativas (`budget`, `gross`, `votes`, `score`, `runtime`).
+To ensure **data integrity** and prevent bias in statistical modeling, the following processing steps were implemented:
 
-* **Presupuesto vs. Recaudación (`budget` vs. `gross`):**
-  * Alta correlación positiva (**r ≈ 0.74**).
-  * *Insight:* El presupuesto de producción es el indicador cuantitativo con mayor peso en los ingresos brutos en taquilla.
-* **Votos de Audiencia vs. Recaudación (`votes` vs. `gross`):**
-  * Correlación positiva relevante (**r ≈ 0.61**).
-  * *Insight:* El nivel de popularidad e interés del público reflejado en la cantidad de reseñas/votos actúa como un catalizador directo del éxito comercial.
-
-### 2. Visualización Estratégica
-* **Modelos de Dispersión con Regresión Lineal:**
-  * Implementación de gráficos `sns.regplot()` para evidenciar la tendencia lineal positiva entre el presupuesto asignado y el comportamiento de la taquilla.
-* **Mapas de Calor (Heatmaps):**
-  * Generación de mapas de calor multivariables utilizando `Seaborn` para traducir patrones complejos de correlación en resúmenes visuales claros y procesables.
+1. **Missing Data Audit:** Evaluated missing values across all 15 dataset features.
+2. **Type Inconsistency Correction:**
+   * Converted floating-point variables (`float64`) to integers (`int64`) for key numerical fields such as `budget` and `gross` to optimize storage and align with financial formatting standards.
+3. **Date Standardization:**
+   * Engineered the `yearcorrect` calculated feature by extracting the release year directly from the `released` date string, resolving discrepancies with the original `year` column.
+4. **Categorical Encoding:** Applied numerical encoding (*numerization*) to qualitative variables (company, director, genre, writer) to evaluate their impact within a multivariable correlation matrix.
 
 ---
 
-## 📁 Estructura del Repositorio
+## 📊 Exploratory Data Analysis (EDA) & Key Insights
+
+### 1. Numerical Correlation Evaluation
+Calculated Pearson correlation matrices to quantify relationships among quantitative features (`budget`, `gross`, `votes`, `score`, `runtime`).
+
+* **Budget vs. Gross Revenue (`budget` vs. `gross`):**
+  * Strong positive correlation (**r ≈ 0.74**).
+  * *Insight:* Production budget is the most significant quantitative predictor of gross revenue.
+* **Audience Votes vs. Gross Revenue (`votes` vs. `gross`):**
+  * Moderate-to-high positive correlation (**r ≈ 0.61**).
+  * *Insight:* Audience engagement and popularity (reflected in vote counts) serve as direct catalysts for commercial performance.
+
+### 2. Visual Analytics
+* **Linear Regression Scatter Plots:**
+  * Implemented `sns.regplot()` scatter plots with regression lines to illustrate clear linear trends between allocated budget and box office performance.
+* **Correlation Heatmaps:**
+  * Generated multivariable heatmaps using `Seaborn` to translate complex numerical correlations into intuitive visual summaries.
+
+---
+
+## 📁 Repository Structure
 
 ```text
-├── movies.csv          # Dataset con información histórica de películas
-├── Movie_Project.ipynb # Notebook interactivo con el análisis completo
-└── README.md           # Documentación del proyecto
+├── movies.csv          # Historical movie dataset
+├── Movie_Project.ipynb # Interactive Jupyter Notebook with complete analysis
+└── README.md           # Technical documentation
